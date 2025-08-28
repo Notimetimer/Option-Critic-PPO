@@ -47,6 +47,8 @@ class RolloutStorage(object):
         self.states[0].copy_(self.states[-1])
         self.masks[0].copy_(self.masks[-1])
         self.options[0].copy_(self.options[-1])
+    
+    # 广义优势估计
     def compute_returns(self, next_value, use_gae, gamma, tau):
         if use_gae:
             self.value_preds[-1] = next_value

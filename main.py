@@ -260,7 +260,7 @@ def main():
                     right_values = torch.cat(right_values)
                     termination_loss = (- torch.exp(termination_log_prob) * left_values - (1 - torch.exp(termination_log_prob)) * right_values).mean()
                     optimizer.zero_grad()
-
+                    # 更新actor和Critic网络参数
                     (action_loss + value_loss+ termination_loss - V_Omega.mean()).backward()
                     nn.utils.clip_grad_norm(actor_critic.parameters(), args.max_grad_norm)
 
